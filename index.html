@@ -84,6 +84,7 @@
             justify-content: center;
             flex-wrap: wrap;
             list-style: none;
+            row-gap: 1rem;
         }
 
         nav li {
@@ -244,7 +245,7 @@
             <h1><i class="fas fa-water"></i> Hydrological Terrain Analysis in SAGA GIS</h1>
             <p>A complete course for students on performing hydrological terrain analysis using SAGA GIS—from DEM preprocessing to watershed delineation and hydrological indices.</p>
             <div class="github-link">
-                <a href="https://github.com/yourusername/your-repo" target="_blank">
+                <a href="https://github.com/SaleksandraMSU/English_course" target="_blank">
                     <i class="fab fa-github"></i> View on GitHub
                 </a>
             </div>
@@ -267,11 +268,13 @@
         </nav>
 
         <main>
+            <!-- COURSE OVERVIEW -->
             <section id="overview" class="section">
-                <h2><i class="fas fa-info-circle icon"></i> Course Overview</h2>
-                <p>This course provides a comprehensive introduction to hydrological terrain analysis using SAGA GIS. Students will learn to process digital elevation models (DEMs), model water flow, delineate watersheds, compute hydrological indices, and create professional maps for environmental and hydrological applications.</p>
+                <h2><i class="fas fa-info-circle icon"></i> Course Overview & Structure</h2>
+                <p>This course provides comprehensive training in hydrological terrain analysis using SAGA GIS.</p>
             </section>
 
+            <!-- COURSE OBJECTIVES -->
             <section id="objectives" class="section">
                 <h2><i class="fas fa-bullseye icon"></i> Course Objectives</h2>
                 <ul>
@@ -283,32 +286,39 @@
                 </ul>
             </section>
 
+            <!-- COURSE STRUCTURE -->
             <section id="structure" class="section">
                 <h2><i class="fas fa-sitemap icon"></i> Course Structure Overview</h2>
                 <div class="module-grid">
                     <div class="module">
                         <h4><i class="fas fa-play-circle"></i> Session 1</h4>
-                        <p><strong>Introduction to DEM and SAGA GIS</strong><br>Concepts, interface, morphometric tools</p>
+                        <p><strong>Introduction to DEM and SAGA GIS</strong></p>
+                        <p>Concepts: DEM, DTM, DSM<br>SAGA GIS interface overview<br>Key modules: Import Grid (GDAL), Slope, Aspect, Curvature, Analytical Hillshading</p>
                     </div>
                     <div class="module">
                         <h4><i class="fas fa-tools"></i> Session 2</h4>
-                        <p><strong>DEM Preprocessing and Sink Filling</strong><br>Correcting DEM artifacts for hydrological modeling</p>
+                        <p><strong>DEM Preprocessing and Sink Filling</strong></p>
+                        <p>Why DEM correction is essential<br>Workflow: Detect Sinks → Fill Sinks → Validate → Update Slope<br>Key modules: Sinks (Depressions), Fill Sinks (Wang & Liu), Grid Calculator</p>
                     </div>
                     <div class="module">
                         <h4><i class="fas fa-stream"></i> Session 3</h4>
-                        <p><strong>Flow Direction and Accumulation</strong><br>D8, MFD, Rho8 algorithms, channel extraction</p>
+                        <p><strong>Flow Direction and Accumulation</strong></p>
+                        <p>Flow algorithms: D8, MFD, Rho8<br>Process: DEM → Flow Direction → Accumulation → Stream Network<br>Key modules: Flow Accumulation (Top-Down), Channel Network, Flow Path Length</p>
                     </div>
                     <div class="module">
                         <h4><i class="fas fa-project-diagram"></i> Session 4</h4>
-                        <p><strong>Watershed Delineation</strong><br>Automated and manual basin delineation</p>
+                        <p><strong>Watershed Delineation</strong></p>
+                        <p>Concepts: Watersheds, Pour Points, Sub-basins<br>Key modules: Watershed Basins, Catchment Area (Parallel), Shapes → Create Points Layer</p>
                     </div>
                     <div class="module">
                         <h4><i class="fas fa-chart-line"></i> Session 5</h4>
-                        <p><strong>Hydrological Indices</strong><br>TWI, SPI, LS Factor calculation and interpretation</p>
+                        <p><strong>Hydrological Indices</strong></p>
+                        <p>Indices: TWI = ln(A / tanβ), SPI = A × tanβ, LS Factor (RUSLE)<br>Key modules: Topographic Wetness Index (TWI), Stream Power Index (SPI), LS Factor (RUSLE)</p>
                     </div>
                     <div class="module">
                         <h4><i class="fas fa-graduation-cap"></i> Session 6</h4>
-                        <p><strong>Final Project and Assessment</strong><br>Full workflow application, theory quiz, project submission</p>
+                        <p><strong>Final Project and Assessment</strong></p>
+                        <p>Apply full workflow: Import & preprocess DEM, Compute flow & watershed, Generate TWI/SPI/LS maps, Prepare final report</p>
                     </div>
                 </div>
             </section>
@@ -316,9 +326,10 @@
             <!-- SESSION 1 -->
             <section id="session1" class="section">
                 <h2><i class="fas fa-play-circle icon"></i> Session 1: Introduction to DEM and SAGA GIS</h2>
+                
                 <h3>Learning Objectives</h3>
                 <ul>
-                    <li>Define what a Digital Elevation Model (DEM) is and why it’s essential for hydrology</li>
+                    <li>Define what a Digital Elevation Model (DEM) is and why it's essential for hydrology</li>
                     <li>Identify and distinguish between common DEM formats (GeoTIFF, ASCII, SAGA Grid)</li>
                     <li>Navigate the SAGA GIS interface and manage raster/vector data</li>
                     <li>Apply core morphometric tools: slope, aspect, curvature, and hillshading</li>
@@ -327,38 +338,77 @@
                 </ul>
 
                 <h3>Digital Elevation Models: Concepts and Characteristics</h3>
-                <p>A Digital Elevation Model (DEM) is a raster-based representation of the Earth's surface, where each cell contains a numerical elevation value.</p>
+                <p>Digital Elevation Model (DEM) is a raster-based representation of the Earth's surface, where each cell contains a numerical elevation value.</p>
+                
                 <div class="card">
-                    <h4>Common DEM Formats:</h4>
+                    <h4>DEM Formats</h4>
                     <ul>
-                        <li><strong>GeoTIFF</strong> (.tif)</li>
-                        <li><strong>ASCII Grid</strong> (.asc)</li>
-                        <li><strong>SAGA Grid</strong> (.sgrd / .sdat)</li>
+                        <li>GeoTIFF (.tif)</li>
+                        <li>ASCII Grid (.asc)</li>
+                        <li>SAGA Grid (.sgrd / .sdat)</li>
                     </ul>
                 </div>
+                
+                <p><strong>Spatial Resolution and Scale:</strong> Higher-resolution DEMs provide more detailed terrain information but require greater computational resources.</p>
 
                 <h3>Introduction to the SAGA GIS Environment</h3>
-                <p>SAGA GIS is a specialized system for terrain and hydrological analysis.</p>
+                <p>The session provides a structured tour of the SAGA GIS interface and data organization, focusing on its role as a specialized system for terrain and hydrological analysis.</p>
+                
                 <div class="card">
-                    <h4>Data Manager Structure:</h4>
+                    <h4>Data Manager Structure</h4>
                     <ul>
                         <li><strong>Grids</strong> – raster layers (elevation, slope, flow accumulation, etc.)</li>
                         <li><strong>Shapes</strong> – vector layers (points, lines, polygons)</li>
                         <li><strong>Tables, point clouds, and other data types</strong></li>
                     </ul>
+                    <p><strong>File Types in SAGA GIS:</strong> .sdat / .sgrd, .shp and .tif</p>
+                </div>
+
+                <div class="card">
+                    <h4>Module Libraries</h4>
+                    <ul>
+                        <li><strong>Terrain Analysis</strong> – morphometry, lighting, hydrology</li>
+                        <li><strong>Hydrology</strong> – flow modeling, watershed basins, depressions</li>
+                        <li><strong>Grid Tools</strong> – resampling, calculation, conversion</li>
+                        <li><strong>Import/Export tools</strong> – integration with GDAL for reading and writing GIS formats</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Coordinate Systems and Projection Management</h4>
+                    <p>Session 1 explains how SAGA GIS supports coordinate systems using GDAL/Proj libraries, how to check and assign CRS, the consequences of mismatched projections on hydrological outputs.</p>
                 </div>
 
                 <h3>Practical Applications in Session 1</h3>
-                <ul>
-                    <li><strong>Importing DEM Data:</strong> File → Import → Import Raster; Modules → Import/Export Grids → Import Grid (GDAL)</li>
-                    <li><strong>Morphometric Analysis:</strong> Slope, Aspect, Curvature</li>
-                    <li><strong>Hillshading and Terrain Visualization:</strong> Terrain Analysis → Lighting, Visibility → Analytical Hillshading</li>
-                </ul>
+                <p>The second half of the session is dedicated to hands-on exercises that demonstrate the first steps of working with DEMs in SAGA GIS.</p>
+                
+                <div class="card">
+                    <h4>Importing DEM Data</h4>
+                    <ul>
+                        <li>File → Import → Import Raster</li>
+                        <li>Modules → Import/Export Grids → Import Grid (GDAL)</li>
+                        <li>Modules → Projection → Set Coordinate Reference System</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Morphometric Analysis:</strong> Slope, Aspect, Curvature</p>
+                
+                <div class="card">
+                    <h4>Hillshading and Terrain Visualization</h4>
+                    <p>Using: Terrain Analysis → Lighting, Visibility → Analytical Hillshading</p>
+                    <p><strong>Display and Legend Configuration:</strong> The session also includes guidance on using SAGA's visual tools:</p>
+                    <ul>
+                        <li>Adjusting color ramps (e.g., terrain, viridis)</li>
+                        <li>Modifying classification modes</li>
+                        <li>Managing data legends within the Data panel</li>
+                    </ul>
+                </div>
 
                 <div class="highlight">
                     <h4><i class="fas fa-tasks"></i> Assignment</h4>
+                    <p>To reinforce the topics covered, participants complete the following tasks:</p>
                     <ol>
-                        <li>Select a 20×20 km study area and obtain an appropriate DEM</li>
+                        <li>Select a \( 20 \times 20 \, \text{km} \) study area and obtain an appropriate DEM</li>
                         <li>Import the DEM into SAGA GIS and verify its coordinate reference system</li>
                         <li>Calculate terrain derivatives: Slope, Aspect</li>
                         <li>Export the results as GeoTIFF for further use</li>
@@ -368,7 +418,8 @@
 
             <!-- SESSION 2 -->
             <section id="session2" class="section">
-                <h2><i class="fas fa-tools icon"></i> Session 2: DEM Preprocessing & Hydrological Correction</h2>
+                <h2><i class="fas fa-tools icon"></i> Session 2: DEM Preprocessing and Hydrological Correction</h2>
+                
                 <h3>Learning Objectives</h3>
                 <ul>
                     <li>Understand DEM Quality Issues</li>
@@ -378,6 +429,7 @@
                 </ul>
 
                 <h3>DEM Artifacts and Their Impact</h3>
+                <p>Several imperfections may appear in DEMs:</p>
                 <ul>
                     <li><strong>Sinks (Depressions):</strong> Local closed basins where water becomes "trapped," preventing downstream flow</li>
                     <li><strong>Flats:</strong> Areas with uniform elevation lacking a clear flow direction</li>
@@ -385,150 +437,648 @@
                     <li><strong>Artificial Noise:</strong> Striping, spikes, or interpolation errors from remote-sensing datasets</li>
                 </ul>
 
+                <div class="card">
+                    <h4>Source of DEM Artifacts</h4>
+                    <p>These features are usually not true landscape characteristics; instead, they result from:</p>
+                    <ul>
+                        <li>Satellite measurement errors</li>
+                        <li>Interpolation from coarse data</li>
+                        <li>Vegetation or building interference</li>
+                        <li>Merging of multiple datasets</li>
+                    </ul>
+                </div>
+
                 <h3>Practical Procedures</h3>
                 <ol>
-                    <li><strong>Identifying Sinks and Flats:</strong> Terrain Analysis → Preprocessing → Sinks Detection/Flat Detection</li>
-                    <li><strong>Filling Sinks:</strong> Terrain Analysis → Preprocessing → Fill Sinks (Wang & Liu)</li>
-                    <li><strong>Validating the Correction:</strong> Use Grid Calculator: <code>DEM_filled - DEM_original</code></li>
-                    <li><strong>Recomputing Morphometric Parameters:</strong> Recalculate Slope, Aspect, Curvature after correction</li>
+                    <li><strong>Identifying Sinks and Flats</strong><br>
+                        Tool Path: <em>Terrain Analysis → Preprocessing → Sinks Detection/Flat Detection</em><br>
+                        This tool highlights areas where the DEM contains closed depressions. The output visualization confirmed the presence of numerous artificial pits, especially in low-relief sections of the terrain.</li>
+                    
+                    <li><strong>Filling Sinks</strong><br>
+                        Tool Path: <em>Terrain Analysis → Preprocessing → Fill Sinks (Wang & Liu)</em><br>
+                        The algorithm iteratively raises cell elevations within depressions just enough to allow flow continuity across the surface while preserving natural terrain gradients.</li>
+                    
+                    <li><strong>Validating the Correction</strong><br>
+                        To assess the magnitude and spatial pattern of the DEM modifications, the Grid Calculator was used:<br>
+                        <strong>Formula:</strong> <code>DEM_filled - DEM_original</code><br>
+                        This created a difference raster demonstrating where and how much the DEM had been adjusted. Most modifications were minor (&lt;1 m), concentrated in flat valleys and internal basins.</li>
+                    
+                    <li><strong>Recomputing Morphometric Parameters</strong><br>
+                        After correction, the Slope, Aspect, and Curvature grids were recalculated using:<br>
+                        <em>Terrain Analysis → Morphometry → Slope, Aspect, Curvature</em><br>
+                        This allowed comparison with pre-correction terrain derivatives to identify changes in surface morphology. The slope grid, in particular, became more consistent along drainage paths.</li>
                 </ol>
 
-                <div class="output-box">
-                    <h4><i class="fas fa-check-circle"></i> Output</h4>
-                    <p><strong>Conditioned DEM</strong> ready for hydrological modeling.</p>
+                <h3>Results and Discussion</h3>
+                <p>The hydrological correction significantly improved the suitability of the DEM for subsequent modeling. Key observations include:</p>
+                <ul>
+                    <li>Artificial depressions were removed without over-smoothing the surface</li>
+                    <li>Flow paths became continuous, enabling realistic routing in later sessions</li>
+                    <li>The difference grid revealed minimal and targeted elevation adjustments</li>
+                    <li>Slope recalculations showed that artificially flat zones were corrected, improving flow direction modeling</li>
+                </ul>
+                <p>These results confirm that hydrological conditioning is a crucial preprocessing step before computing flow direction, flow accumulation, or building stream networks.</p>
+
+                <h3>Conclusion</h3>
+                <p>Session 2 provided both theoretical understanding and practical experience in DEM preprocessing. Participants learned to:</p>
+                <ul>
+                    <li>Recognize common DEM artifacts</li>
+                    <li>Apply hydrological conditioning techniques</li>
+                    <li>Use SAGA GIS tools for depression identification and filling</li>
+                    <li>Validate DEM modifications through difference maps</li>
+                    <li>Prepare the DEM for hydrological modeling</li>
+                </ul>
+                <p>This corrected DEM will form the basis for Sessions 3–6, where flow routing, watershed delineation, and hydrological indices will be computed.</p>
+
+                <div class="highlight">
+                    <h4><i class="fas fa-tasks"></i> Assignment</h4>
+                    <p>Homework tasks included:</p>
+                    <ul>
+                        <li>Comparing original and corrected DEMs visually and statistically</li>
+                        <li>Evaluating how DEM correction affected slope and morphological properties</li>
+                    </ul>
                 </div>
             </section>
 
             <!-- SESSION 3 -->
             <section id="session3" class="section">
                 <h2><i class="fas fa-stream icon"></i> Session 3: Flow Direction & Accumulation</h2>
-                <h3>Objective</h3>
-                <p>Understand the concepts of hydrological modeling in a raster environment and perform key drainage network extraction processes using SAGA GIS.</p>
+                
+                <p><strong>Session Duration:</strong> 2–2.5 hours</p>
+                
+                <div class="card">
+                    <h4>Objective</h4>
+                    <p>By the end of this session, participants will be able to understand the concepts of hydrological modeling in a raster environment and perform key drainage network extraction processes using SAGA GIS, starting from a Digital Elevation Model (DEM)</p>
+                </div>
 
-                <h3>The Hydrological Modeling Workflow</h3>
+                <h3>Part 1: Introduction & Theory (30 minutes)</h3>
+                
+                <h4>1.1 Welcome & Recap (5 mins)</h4>
+                <ul>
+                    <li>Welcome participants</li>
+                    <li>Briefly recap the previous session (e.g., DEM creation, preprocessing, pit removal)</li>
+                </ul>
+
+                <h4>1.2 The Hydrological Modeling Workflow (10 mins)</h4>
+                <p>Introduce the core process chain as shown on the slide:</p>
                 <p><strong>DEM → Flow Direction → Flow Accumulation → Stream Network</strong></p>
-
-                <h3>Flow Algorithms</h3>
+                
                 <div class="card">
-                    <h4>D8 (Deterministic 8-node)</h4>
-                    <p>Water flows to the <em>one</em> steepest downhill neighbor. Simple and fast but can produce artificial parallel flow lines.</p>
-                </div>
-                <div class="card">
-                    <h4>MFD (Multiple Flow Direction - FD8)</h4>
-                    <p>Water is distributed to <em>multiple</em> downhill neighbors proportionally to slope. More realistic for divergent flow.</p>
-                </div>
-                <div class="card">
-                    <h4>Rho8 (Random 8-node)</h4>
-                    <p>Stochastic version of D8 with random choice between equal-slope cells. Produces more natural-looking networks.</p>
+                    <h4>Explain the logic:</h4>
+                    <ul>
+                        <li><strong>DEM:</strong> The foundational data representing the terrain's elevation</li>
+                        <li><strong>Flow Direction:</strong> For each cell, we determine where water would flow out</li>
+                        <li><strong>Flow Accumulation:</strong> For each cell, we calculate how many upstream cells drain into it. This identifies potential flow channels</li>
+                        <li><strong>Stream Network:</strong> We define rivers and streams based on a threshold of accumulated flow</li>
+                    </ul>
                 </div>
 
-                <h3>Practical Steps in SAGA GIS</h3>
-                <ol>
-                    <li><strong>Data Preparation:</strong> Load DEM and fill sinks</li>
-                    <li><strong>Flow Direction:</strong> Terrain Analysis → Channels → Flow Direction (Parallel)</li>
-                    <li><strong>Flow Accumulation:</strong> Terrain Analysis → Channels → Flow Accumulation (Top-Down)</li>
-                    <li><strong>Channel Network Extraction:</strong> Terrain Analysis → Channels → Channel Network (set initiation threshold)</li>
-                    <li><strong>Flow Path Length:</strong> Terrain Analysis → Channels → Flow Path Length</li>
-                </ol>
+                <h4>1.3 Understanding Flow Algorithms (15 mins)</h4>
+                <p>Explain why we need algorithms to model flow over a gridded surface.</p>
+                <p>Detail the three mentioned algorithms:</p>
+                
+                <div class="card">
+                    <h4>D8 (Deterministic 8-node):</h4>
+                    <ul>
+                        <li><strong>Concept:</strong> Water flows to the <em>one</em> steepest downhill neighbor out of the eight surrounding cells</li>
+                        <li><strong>Analogy:</strong> A ball rolling down a slope always takes the single steepest path</li>
+                        <li><strong>Pros:</strong> Simple, computationally fast</li>
+                        <li><strong>Cons:</strong> Can produce artificial, parallel flow lines; doesn't model flow dispersion well</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>MFD (Multiple Flow Direction - FD8):</h4>
+                    <ul>
+                        <li><strong>Concept:</strong> Water is distributed to <em>multiple</em> downhill neighbors, proportionally to their slope</li>
+                        <li><strong>Analogy:</strong> Spilling water on a complex surface; it spreads out as it flows down</li>
+                        <li><strong>Pros:</strong> More realistic for modeling divergent flow over hillslopes</li>
+                        <li><strong>Cons:</strong> More computationally intensive</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Rho8 (Random 8-node):</h4>
+                    <ul>
+                        <li><strong>Concept:</strong> A stochastic version of D8. It introduces a random component when choosing between cells with equal slope, helping to avoid artifacts</li>
+                        <li><strong>Pros:</strong> Can produce more natural-looking, meandering channel networks</li>
+                        <li><strong>Cons:</strong> Results can vary slightly with each run due to randomness</li>
+                    </ul>
+                </div>
+
+                <h3>Part 2: Practical Demonstration in SAGA GIS (60-75 minutes)</h3>
+                <p>In this section, the instructor will perform the steps live while participants follow along.</p>
+                
+                <h4>2.1 Data Preparation (10 mins)</h4>
+                <ul>
+                    <li><strong>Loading the DEM:</strong> Open SAGA GIS and load your DEM (File > Load > Grid)</li>
+                    <li><strong>Preprocessing (Recap):</strong> Briefly run the Fill Sinks tool (Terrain Analysis > Preprocessing) to remove artificial pits that would block flow. Explain that this is a critical step for a continuous drainage network</li>
+                </ul>
+
+                <h4>2.2 Calculating Flow Direction (15 mins)</h4>
+                <ul>
+                    <li><strong>Navigate to:</strong> Terrain Analysis > Channels > Flow Direction (Parallel)</li>
+                    <li><strong>Parameters:</strong>
+                        <ul>
+                            <li>Elevation: Select your (filled) DEM</li>
+                            <li>Method: Explain the options here. Demonstrate the D8 method first</li>
+                        </ul>
+                    </li>
+                    <li><strong>Run the tool:</strong> The output is a grid where each cell's value is a code (e.g., 1=E, 2=SE, 4=S, etc.) representing the flow direction</li>
+                    <li><strong>Visualization:</strong> Show how to visualize the direction grid, perhaps using an arrow representation</li>
+                </ul>
+
+                <h4>2.3 Calculating Flow Accumulation (Top-Down) (20 mins)</h4>
+                <ul>
+                    <li><strong>Navigate to:</strong> Terrain Analysis > Channels > Flow Accumulation (Top-Down)</li>
+                    <li><strong>Parameters:</strong>
+                        <ul>
+                            <li><strong>Flow Direction:</strong> Select the Flow Direction grid you just created</li>
+                            <li><strong>Weight (Optional):</strong> Leave blank for standard accumulation</li>
+                            <li><strong>Accumulation Method:</strong> Choose Absolute for the total count of upstream cells</li>
+                        </ul>
+                    </li>
+                    <li><strong>Run the tool</strong></li>
+                    <li><strong>Visualization & Interpretation:</strong>
+                        <ul>
+                            <li>The output will be a grid with low values (0, 1, 2...) in ridge areas and very high values in valley bottoms</li>
+                            <li>Change the symbology to a logarithmic or classified stretch to clearly see the developing channel network. The bright lines are your high-flow-accumulation areas</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>2.4 Extracting the Channel Network (15 mins)</h4>
+                <ul>
+                    <li><strong>Navigate to:</strong> Terrain Analysis > Channels > Channel Network</li>
+                    <li><strong>Parameters:</strong>
+                        <ul>
+                            <li>Flow Accumulation: Select your accumulation grid</li>
+                            <li><strong>Initiation Threshold:</strong> This is the most important parameter!
+                                <ul>
+                                    <li>Explain: "We define a stream as starting where the flow accumulation exceeds a certain value"</li>
+                                    <li>Demonstration: Start with a high value (e.g., 1000). The network will be sparse</li>
+                                    <li>Change to a lower value (e.g., 100). The network becomes much denser</li>
+                                    <li>Discuss how this threshold choice depends on the scale of your study</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Run the tool:</strong> This creates two outputs: a grid (raster channels) and a shapefile (vector channels)</li>
+                </ul>
+
+                <h4>2.5 Calculating Flow Path Length (10 mins)</h4>
+                <ul>
+                    <li><strong>Navigate to:</strong> Terrain Analysis > Channels > Flow Path Length</li>
+                    <li><strong>Parameters:</strong>
+                        <ul>
+                            <li>Flow Direction: Select your direction grid</li>
+                            <li>Target: Choose Channel Network to calculate the horizontal distance from each cell to the nearest stream</li>
+                        </ul>
+                    </li>
+                    <li><strong>Interpretation:</strong> Explain that this is a useful measure for understanding runoff processes and sediment delivery</li>
+                </ul>
+
+                <h3>Part 3: Guided Practice & Experimentation (30 minutes)</h3>
+                <p>Participants work on their own computers with provided data.</p>
+                
+                <div class="card">
+                    <h4>Task 1: The Standard Workflow</h4>
+                    <ol>
+                        <li>Load the practice DEM</li>
+                        <li>Preprocess it with Fill Sinks</li>
+                        <li>Calculate Flow Direction using the D8 algorithm</li>
+                        <li>Calculate Flow Accumulation</li>
+                        <li>Extract a Channel Network using a threshold of 500</li>
+                        <li>Save your final stream network as a shapefile</li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h4>Task 2: Compare Algorithms</h4>
+                    <ol>
+                        <li>Calculate a new Flow Direction grid using the MFD algorithm</li>
+                        <li>Calculate the corresponding Flow Accumulation</li>
+                        <li>Visually compare the MFD accumulation raster with the D8 one. How does the flow dispersion differ?</li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h4>Task 3: Experiment with Thresholds</h4>
+                    <ul>
+                        <li>Re-run the Channel Network tool on your D8 accumulation grid with thresholds of 100, 1000, and 5000</li>
+                        <li>Observe and note the dramatic differences in drainage density</li>
+                    </ul>
+                </div>
+
+                <h3>Part 4: Wrap-up & Q&A (15 minutes)</h3>
+                <p><strong>Summary:</strong> Recap the key modules from the slide and the logical chain of DEM → Direction → Accumulation → Network</p>
+                
+                <div class="card">
+                    <h4>Key Takeaways:</h4>
+                    <ul>
+                        <li>The choice of flow algorithm (D8 vs. MFD) impacts the realism of the model</li>
+                        <li>The initiation threshold is a user-defined decision that directly controls the density of the extracted stream network</li>
+                        <li>These tools form the basis for more advanced analyses like watershed delineation and soil erosion modeling</li>
+                    </ul>
+                </div>
+                
+                <p><strong>Open Floor for Questions:</strong> Address any problems encountered during the practical session and discuss conceptual questions</p>
             </section>
 
             <!-- SESSION 4 -->
             <section id="session4" class="section">
                 <h2><i class="fas fa-project-diagram icon"></i> Session 4: Watershed Delineation</h2>
-                <h3>Concepts</h3>
+                
+                <h3>Session Outline</h3>
                 <ul>
-                    <li><strong>Watershed:</strong> Area of land where all precipitation drains to a common outlet</li>
-                    <li><strong>Pour Point:</strong> The lowest point where water exits a watershed (outlet)</li>
-                    <li><strong>Sub-basins:</strong> Smaller drainage units within a larger watershed</li>
+                    <li><strong>Concepts:</strong> Watersheds, Pour Points, Sub-basins</li>
+                    <li><strong>Key modules:</strong>
+                        <ul>
+                            <li>Watershed Basins</li>
+                            <li>Catchment Area (Parallel)</li>
+                            <li>Shapes → Create Points Layer</li>
+                        </ul>
+                    </li>
+                    <li><strong>Output:</strong> watershed polygons, sub-basin hierarchy</li>
                 </ul>
 
-                <h3>Key Modules</h3>
-                <ul>
-                    <li><strong>Watershed Basins:</strong> Automated watershed delineation from DEM</li>
-                    <li><strong>Catchment Area (Parallel):</strong> Computes flow accumulation and drainage patterns</li>
-                    <li><strong>Shapes → Create Points Layer:</strong> Manual pour point creation</li>
-                </ul>
-
-                <h3>Workflow</h3>
-                <ol>
-                    <li><strong>Automated Basin Delineation:</strong> Use Watershed Basins tool with filled DEM and flow direction</li>
-                    <li><strong>Manual Delineation with Pour Points:</strong> Digitize pour points and extract upstream catchments</li>
-                    <li><strong>Sub-basin Hierarchy:</strong> Use multiple pour points to create nested sub-basins</li>
-                </ol>
-
-                <div class="output-box">
-                    <h4><i class="fas fa-check-circle"></i> Output</h4>
-                    <p>Watershed polygons, sub-basin hierarchy (vector layers).</p>
+                <div class="card">
+                    <h4>By the end of this lesson, students will be able to:</h4>
+                    <ol>
+                        <li>Define watersheds, pour points, and sub-basins in a hydrological context</li>
+                        <li>Use SAGA GIS to delineate watershed boundaries and sub-basin hierarchies</li>
+                        <li>Extract pour points and generate watershed polygons</li>
+                        <li>Interpret the results for hydrological analysis</li>
+                    </ol>
                 </div>
+
+                <h3>Part 1: Theoretical Foundation</h3>
+                
+                <h4>A. Introduction to Watershed Concepts (15 minutes)</h4>
+                <div class="card">
+                    <h5>1. What is a Watershed?</h5>
+                    <ul>
+                        <li>Area of land where all precipitation drains to a common outlet</li>
+                        <li>Importance in hydrology, ecology, and water resource management</li>
+                    </ul>
+                    
+                    <h5>2. Key Terminology</h5>
+                    <ul>
+                        <li><strong>Pour Point:</strong> The lowest point where water exits a watershed (outlet)</li>
+                        <li><strong>Sub-basins:</strong> Smaller drainage units within a larger watershed</li>
+                        <li><strong>Drainage Divide:</strong> Boundary separating adjacent watersheds</li>
+                    </ul>
+                    
+                    <h5>3. Applications of Watershed Delineation</h5>
+                    <ul>
+                        <li>Flood risk assessment, water quality studies, land-use planning</li>
+                    </ul>
+                </div>
+
+                <h4>B. Overview of SAGA GIS Modules (15 minutes)</h4>
+                <div class="card">
+                    <h5>1. Watershed Basins Module</h5>
+                    <p>Delineates watersheds from a DEM using flow routing</p>
+                    
+                    <h5>2. Catchment Area (Parallel) Module</h5>
+                    <p>Computes flow accumulation and drainage patterns</p>
+                    
+                    <h5>3. Shapes → Create Points Layer</h5>
+                    <p>Manual creation of pour points for custom watershed delineation</p>
+                    
+                    <h5>4. Outputs Explained</h5>
+                    <ul>
+                        <li>Watershed polygons (vector)</li>
+                        <li>Sub-basin hierarchy (nested polygons)</li>
+                    </ul>
+                </div>
+
+                <h3>Part 2: Automated Basin Delineation (30 minutes)</h3>
+                <p><strong>Module:</strong> Terrain Analysis → Hydrology → Watershed Basins</p>
+                
+                <div class="card">
+                    <h4>Steps:</h4>
+                    <ol>
+                        <li>Load a preprocessed DEM (filled) and flow direction grid from previous lessons</li>
+                        <li>Run Watershed Basins tool to automatically segment the landscape into watersheds based on river network topology</li>
+                        <li>Discuss how SAGA determines basin boundaries using flow directions</li>
+                        <li>Symbolize output polygons and compare with flow accumulation patterns</li>
+                    </ol>
+                    <p><strong>Output:</strong> A polygon layer of watershed basins</p>
+                </div>
+
+                <h3>Part 3: Manual Watershed Delineation Using Pour Points (40 minutes)</h3>
+                
+                <h4>A. Creating Pour Points</h4>
+                <div class="card">
+                    <p><strong>Module:</strong> Shapes → Create Points Layer</p>
+                    <ul>
+                        <li>Manually digitize pour points at stream confluences, reservoir inlets, or points of interest</li>
+                        <li>Load point data from a text file if available (e.g., monitoring stations)</li>
+                    </ul>
+                </div>
+                
+                <h4>B. Extracting Upstream Catchments</h4>
+                <div class="card">
+                    <p><strong>Module:</strong> Terrain Analysis → Hydrology → Catchment Area (Parallel)</p>
+                    <ul>
+                        <li>Input: DEM, flow direction</li>
+                        <li>Use the Target Outlet Points option with your pour point layer</li>
+                        <li>Run for single and multiple points</li>
+                    </ul>
+                    <p><strong>Output:</strong> Individual watershed polygons for each pour point</p>
+                    <p><strong>Discussion:</strong> Compare automated vs. manual delineation</p>
+                </div>
+
+                <h3>Part 4: Sub-basin Delineation & Hierarchy (20 minutes)</h3>
+                <ul>
+                    <li>Use multiple pour points along the main river to create nested sub-basins</li>
+                    <li>Show how sub-basins aggregate upstream</li>
+                    <li>Use Watershed Basins with a threshold to control basin size</li>
+                    <li>Visualize hierarchy using graduated colors or labeling</li>
+                </ul>
+                <p><strong>Output:</strong> Sub-basin polygons with hierarchical attributes</p>
+
+                <h3>Part 5: Discussion and Q&A (10 minutes)</h3>
+                <ul>
+                    <li>Export results</li>
+                    <li>Compare automated vs. manual watershed delineation</li>
+                    <li>Discuss limitations: DEM resolution, accuracy of pour points</li>
+                    <li>Real-world applications: How would this be used in a hydrological study?</li>
+                    <li>Preview of next lesson</li>
+                </ul>
             </section>
 
             <!-- SESSION 5 -->
             <section id="session5" class="section">
-                <h2><i class="fas fa-chart-line icon"></i> Session 5: Hydrological Indices</h2>
-                <h3>Key Hydrological Indices</h3>
+                <h2><i class="fas fa-chart-line icon"></i> Session 5: Hydrological Indices in SAGA GIS</h2>
+                
+                <p><strong>Duration:</strong> 2 hours</p>
+                
                 <div class="card">
-                    <h4>Topographic Wetness Index (TWI)</h4>
-                    <p><strong>Formula:</strong> TWI = ln(A / tanβ)<br>
-                    <strong>Meaning:</strong> Predicts soil moisture and saturation zones. High TWI = wetter areas (valleys, hollows).</p>
-                </div>
-                <div class="card">
-                    <h4>Stream Power Index (SPI)</h4>
-                    <p><strong>Formula:</strong> SPI = A × tanβ<br>
-                    <strong>Meaning:</strong> Estimates erosive power of overland flow. High SPI = high erosion potential.</p>
-                </div>
-                <div class="card">
-                    <h4>LS Factor (RUSLE)</h4>
-                    <p><strong>Meaning:</strong> Slope length and steepness factor for soil erosion modeling. Used in agricultural and conservation planning.</p>
+                    <h4>Objective</h4>
+                    <p>Students will understand, calculate, and interpret key hydrological indices derived from digital elevation models (DEMs) for terrain analysis and sensitivity mapping.</p>
                 </div>
 
-                <h3>Calculation in SAGA GIS</h3>
+                <h3>Part 1: Theory & Conceptual Foundation (30 minutes)</h3>
+                
+                <h4>1. Introduction (5 min)</h4>
                 <ul>
-                    <li><strong>TWI:</strong> Terrain Analysis → Hydrology → Topographic Wetness Index</li>
-                    <li><strong>SPI:</strong> Terrain Analysis → Hydrology → Stream Power Index</li>
-                    <li><strong>LS Factor:</strong> Terrain Analysis → Soil Erosion → LS Factor (RUSLE)</li>
+                    <li>Recap of previous sessions (DEM preprocessing, flow accumulation, watershed delineation)</li>
+                    <li>Today's focus: From flow patterns to "quantitative hydrological indices" used in geomorphology, hydrology, and erosion modeling</li>
                 </ul>
 
-                <div class="output-box">
-                    <h4><i class="fas fa-check-circle"></i> Output</h4>
-                    <p>Hydrological sensitivity maps (TWI, SPI, LS).</p>
+                <h4>2. Key Hydrological Indices Explained (25 min)</h4>
+                
+                <div class="card">
+                    <h5>Topographic Wetness Index (TWI) – ln(A / tanβ)</h5>
+                    <ul>
+                        <li><strong>Concept:</strong> Predicts soil moisture and saturation zones</li>
+                        <li><strong>A:</strong> Upslope contributing area (flow accumulation × cell size)</li>
+                        <li><strong>tanβ:</strong> Local slope gradient</li>
+                        <li><strong>Interpretation:</strong> High TWI = wetter areas (valleys, hollows)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h5>Stream Power Index (SPI) – A × tanβ</h5>
+                    <ul>
+                        <li><strong>Concept:</strong> Estimates erosive power of overland flow</li>
+                        <li>Relationship to stream incision and sediment transport</li>
+                        <li><strong>Interpretation:</strong> High SPI = areas with high erosion potential</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h5>LS Factor (from RUSLE – Revised Universal Soil Loss Equation)</h5>
+                    <ul>
+                        <li><strong>Concept:</strong> Slope length (L) and steepness (S) factor for soil erosion modeling</li>
+                        <li>Integrates both slope length and slope angle effects</li>
+                        <li>Used in agricultural and conservation planning</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h5>Applications:</h5>
+                    <ul>
+                        <li>Flood risk mapping (TWI)</li>
+                        <li>Erosion hazard assessment (SPI, LS)</li>
+                        <li>Environmental sensitivity maps</li>
+                    </ul>
+                </div>
+
+                <h3>Part 2: Practical Session in SAGA GIS (1 hour 15 minutes)</h3>
+                
+                <h4>1. Data Preparation (10 min)</h4>
+                <ul>
+                    <li>Load preprocessed DEM (from Session 4)</li>
+                    <li>Ensure slope and catchment area grids are available</li>
+                </ul>
+
+                <h4>2. Step-by-Step Calculation (45 min)</h4>
+                
+                <div class="card">
+                    <h5>TWI Calculation:</h5>
+                    <ul>
+                        <li><strong>Modules:</strong> 'Terrain Analysis → Hydrology → Topographic Wetness Index'</li>
+                        <li><strong>Input:</strong> Slope (in radians) & Catchment Area</li>
+                        <li><strong>Output:</strong> TWI map</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h5>SPI Calculation:</h5>
+                    <ul>
+                        <li><strong>Modules:</strong> 'Terrain Analysis → Hydrology → Stream Power Index'</li>
+                        <li><strong>Input:</strong> Slope (gradient) & Catchment Area</li>
+                        <li><strong>Output:</strong> SPI map</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h5>LS Factor Calculation:</h5>
+                    <ul>
+                        <li><strong>Modules:</strong> 'Terrain Analysis → Soil Erosion → LS Factor (RUSLE)'</li>
+                        <li><strong>Input:</strong> DEM, slope, flow accumulation</li>
+                        <li><strong>Output:</strong> LS map</li>
+                    </ul>
+                </div>
+
+                <h4>3. Map Interpretation & Comparison (20 min)</h4>
+                <ul>
+                    <li>Visualize and reclassify outputs</li>
+                    <li>Compare spatial patterns: Where do TWI and SPI agree or disagree?</li>
+                    <li>Discuss real-world implications (e.g., high SPI + high TWI = potential gully erosion)</li>
+                </ul>
+
+                <h3>Part 3: Synthesis & Wrap-Up (15 minutes)</h3>
+                
+                <h4>1. Creating a Hydrological Sensitivity Map (10 min)</h4>
+                <ul>
+                    <li>Combine TWI and SPI into a simple composite index (e.g., average or weighted sum)</li>
+                    <li>Use 'Raster Calculator' to create a combined sensitivity layer</li>
+                    <li>Classify into low, medium, high sensitivity</li>
+                </ul>
+
+                <h4>2. Q&A and Discussion (5 min)</h4>
+                <ul>
+                    <li>How could these indices be used in a real project (e.g., land-use planning, conservation)?</li>
+                    <li>Limitations and assumptions of each index</li>
+                    <li>Preview of next session: Rainfall-runoff modeling or sediment yield estimation</li>
+                </ul>
+
+                <div class="card">
+                    <h4>Materials Provided</h4>
+                    <ul>
+                        <li>Sample DEM and derived layers from previous sessions</li>
+                        <li>Step-by-step handout with module paths and parameter settings</li>
+                        <li>Example maps (TWI, SPI, LS) for reference</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Learning Outcomes</h4>
+                    <p>By the end of this session, students will be able to:</p>
+                    <ol>
+                        <li>Explain the physical meaning of TWI, SPI, and LS Factor</li>
+                        <li>Compute these indices in SAGA GIS using appropriate modules</li>
+                        <li>Interpret and compare the resulting maps for hydrological sensitivity assessment</li>
+                    </ol>
                 </div>
             </section>
 
             <!-- SESSION 6 -->
             <section id="session6" class="section">
-                <h2><i class="fas fa-graduation-cap icon"></i> Session 6: Final Project & Assessment</h2>
-                <h3>Full Workflow Application</h3>
-                <ol>
-                    <li>Import & Preprocess DEM</li>
-                    <li>Compute Flow & Watershed</li>
-                    <li>Generate TWI, SPI, LS maps</li>
-                    <li>Prepare Final Report</li>
-                </ol>
-
-                <h3>Deliverables</h3>
-                <ul>
-                    <li><strong>Maps:</strong> Preprocessed DEM, Flow Accumulation, Watershed, TWI, SPI, LS (GeoTIFF/PNG)</li>
-                    <li><strong>Report:</strong> 3–5 pages including methodology, results, maps, and interpretation</li>
-                </ul>
-
-                <h3>Suggested Project Territories</h3>
+                <h2><i class="fas fa-graduation-cap icon"></i> Session 6: Final Project</h2>
+                
+                <h3>Part 1: Session Introduction & Project Briefing</h3>
+                <p>Overview of the Full Workflow & Deliverables</p>
+                
                 <div class="card">
-                    <h4>Tier 1: Classic & Well-Defined</h4>
-                    <p>Crater Lake (USA), Volcanic Islands (Montserrat, Santorini), Grand Canyon</p>
-                </div>
-                <div class="card">
-                    <h4>Tier 2: Regionally Diverse</h4>
-                    <p>Himalayan Foothills, Post-Glacial Landscapes, Agricultural Watersheds</p>
+                    <h4>Project the workflow from the slide and elaborate:</h4>
+                    <ol>
+                        <li><strong>Import & Preprocess DEM:</strong> Data acquisition, quality check, sink filling, and potential clipping to an Area of Interest (AOI)</li>
+                        <li><strong>Compute Flow & Watershed:</strong> Generating Flow Direction, Flow Accumulation, and delineating a watershed for a chosen outlet point</li>
+                        <li><strong>Generate Derived Indices:</strong> Creating thematic maps of key topographic indices
+                            <ul>
+                                <li><strong>Topographic Wetness Index (TWI):</strong> ln(a / tanβ) - Predicts soil moisture and saturation zones</li>
+                                <li><strong>Stream Power Index (SPI):</strong> ln(a * tanβ) - Indicates the erosive power of overland flow</li>
+                                <li><strong>Slope Length (LS) Factor:</strong> Key component of the (R)USLE soil erosion model</li>
+                            </ul>
+                        </li>
+                        <li><strong>Prepare Final Report:</strong> Synthesizing methods, results, maps, and interpretation</li>
+                    </ol>
                 </div>
 
-                <h3>Evaluation</h3>
-                <ul>
-                    <li>Theory quiz</li>
-                    <li>Practical task completion</li>
-                    <li>Final project submission</li>
-                </ul>
+                <div class="card">
+                    <h4>Review Deliverables in detail:</h4>
+                    
+                    <h5>Maps:</h5>
+                    <p>High-resolution exports (e.g., GeoTIFF for data, PNG for report inclusion) of:</p>
+                    <ul>
+                        <li>Preprocessed DEM (hillshaded)</li>
+                        <li>Flow Accumulation / Stream Network</li>
+                        <li>Delineated Watershed</li>
+                        <li>TWI, SPI, and LS Factor maps</li>
+                    </ul>
+                    
+                    <h5>Report (2-3 pages):</h5>
+                    <p>Structured to include Title, Introduction, Study Area & Data, Methodology, Results & Maps, Discussion, and Conclusion</p>
+                </div>
+
+                <h3>Part 2: Theory Quiz</h3>
+                <p>Administer a closed-book, digital or paper-based quiz.</p>
+                
+                <div class="card">
+                    <h4>Sample Questions:</h4>
+                    <ol>
+                        <li>What is the key conceptual difference between the D8 and MFD flow routing algorithms?</li>
+                        <li>What does a high Topographic Wetness Index (TWI) value indicate about a location?</li>
+                        <li>In the workflow DEM -> Flow Direction -> X -> Stream Network, what is "X" and what does it represent?</li>
+                        <li>What is the primary purpose of the "Fill Sinks" tool before hydrological analysis?</li>
+                        <li>How does the "Initiation Threshold" parameter affect the extracted channel network?</li>
+                    </ol>
+                </div>
+
+                <h3>Suggested Territories for Practical Project</h3>
+                
+                <div class="card">
+                    <h4>Tier 1: Classic & Well-Defined (Ideal for First Projects)</h4>
+                    <ul>
+                        <li><strong>Crater Lake, Oregon, USA:</strong> A nearly perfect closed watershed with a dramatic central feature. Excellent for clear basin delineation</li>
+                        <li><strong>A Small Volcanic Island (e.g., Montserrat, Santorini):</strong> Clearly bounded by coastline, with pronounced radial drainage patterns from a central peak</li>
+                        <li><strong>The Grand Canyon (South Rim Area):</strong> Offers spectacular, clear drainage patterns and dramatic elevation changes, making hydrological features very visually apparent</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Tier 2: Regionally Diverse & Interesting</h4>
+                    <ul>
+                        <li><strong>Himalayan Foothills (Nepal/Bhutan):</strong> Steep slopes, complex terrain, and high erosion potential. Great for analyzing extreme SPI and LS values</li>
+                        <li><strong>Post-Glacial Landscape (Finnish Lapland / Canadian Shield):</strong> Characterized by numerous lakes and depressions (require careful sink handling), providing a challenge in flow routing</li>
+                        <li><strong>Agricultural Watershed (Midwestern USA, Po Valley Italy):</strong> Low-relief terrain. Challenges students to work with subtle topographic signals and understand artificial drainage influences</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Data Source Recommendation:</h4>
+                    <p>USGS EarthExplorer or Copernicus DEM (GLO-30) data for global coverage, or national mapping agency portals (like Ordnance Survey in the UK) for local areas. Providing a pre-downloaded DEM for one or two of these areas can ensure all students can start the practical task immediately.</p>
+                </div>
+
+                <h3>Part 3: Supervised Practical Task Execution (90 minutes)</h3>
+                <p>Students work independently on their project using a provided or self-sourced DEM. The instructor circulates to provide limited guidance and verify progress.</p>
+                
+                <div class="card">
+                    <h4>Task Timeline:</h4>
+                    
+                    <h5>Minutes 0-20: Data Import & Preprocessing</h5>
+                    <ul>
+                        <li>Load DEM, inspect, fill sinks, optionally clip to AOI</li>
+                    </ul>
+                    
+                    <h5>Minutes 20-50: Flow & Watershed Analysis</h5>
+                    <ul>
+                        <li>Compute Flow Direction (D8 recommended for consistency)</li>
+                        <li>Compute Flow Accumulation</li>
+                        <li>Use the Channel Network and Watershed Basins tools to delineate a watershed. Students must choose a pour point (e.g., at the mouth of a main river in their study area)</li>
+                    </ul>
+                    
+                    <h5>Minutes 50-90: Derived Indices Calculation</h5>
+                    <ul>
+                        <li>Calculate Slope and Catchment Area (from Flow Accumulation) as prerequisites</li>
+                        <li><strong>TWI:</strong> Use the Topographic Wetness Index (TWI) tool under Terrain Analysis > Hydrology</li>
+                        <li><strong>SPI:</strong> Use the Stream Power Index tool</li>
+                        <li><strong>LS Factor:</strong> Use the LS-Factor, Field Based tool under Terrain Analysis > Soil Erosion</li>
+                        <li><strong>Crucial:</strong> Begin map layout creation in SAGA's Map module, adding legends, scale bars, and titles</li>
+                    </ul>
+                    <p><strong>Instructor's role</strong> is to confirm that each student has successfully generated the core datasets.</p>
+                </div>
+
+                <h3>Part 4: Project Finalization Guidelines & Submission (40 minutes)</h3>
+                
+                <div class="card">
+                    <h4>Report Writing Guidelines</h4>
+                    
+                    <h5>Title, Name, Date</h5>
+                    
+                    <h5>Introduction:</h5>
+                    <p>Purpose of the project and importance of terrain analysis</p>
+                    
+                    <h5>Study Area & Data:</h5>
+                    <p>Brief description of chosen location and DEM specifications (source, resolution)</p>
+                    
+                    <h5>Methodology:</h5>
+                    <p>A clear, step-by-step description of the SAGA GIS workflow used. This demonstrates understanding</p>
+                    
+                    <h5>Results & Maps:</h5>
+                    <p>Present and briefly describe each of the 6 required maps. Maps should be numbered, have informative captions, and be referenced in the text (e.g., "As shown in Figure 3, the southern sub-basin exhibits high SPI values...")</p>
+                    
+                    <h5>Discussion/Conclusion:</h5>
+                    <p>Interpret results. Example questions to answer: Where are the likely saturated areas (high TWI)? Where is surface erosion potential highest (high SPI/LS)? How does the stream network relate to the topography?</p>
+                </div>
             </section>
 
+            <!-- TOOLS REFERENCE -->
             <section id="tools" class="section">
                 <h2><i class="fas fa-toolbox icon"></i> SAGA GIS Tools Reference</h2>
                 <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
@@ -536,19 +1086,46 @@
                         <tr style="background:#0d3b66; color:white;">
                             <th style="padding:12px; border:1px solid #ddd;">Task</th>
                             <th style="padding:12px; border:1px solid #ddd;">Module</th>
+                            <th style="padding:12px; border:1px solid #ddd;">Input</th>
                             <th style="padding:12px; border:1px solid #ddd;">Output</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Sink filling</td><td>Fill Sinks (Wang & Liu)</td><td>Conditioned DEM</td></tr>
-                        <tr><td>Flow accumulation</td><td>Flow Accumulation (Top-Down)</td><td>Flow grid</td></tr>
-                        <tr><td>Stream extraction</td><td>Channel Network</td><td>Stream SHP</td></tr>
-                        <tr><td>Watershed delineation</td><td>Watershed Basins</td><td>Basin polygons</td></tr>
-                        <tr><td>TWI calculation</td><td>Topographic Wetness Index</td><td>TWI grid</td></tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ddd;">Sink filling</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Fill Sinks (Wang & Liu)</td>
+                            <td style="padding:10px; border:1px solid #ddd;">DEM</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Conditioned DEM</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ddd;">Flow accumulation</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Flow Accumulation (Top-Down)</td>
+                            <td style="padding:10px; border:1px solid #ddd;">DEM</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Flow grid</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ddd;">Stream extraction</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Channel Network</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Flow Accum</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Stream SHP</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ddd;">Watershed delineation</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Watershed Basins</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Flow Dir + Points</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Basin polygons</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ddd;">TWI calculation</td>
+                            <td style="padding:10px; border:1px solid #ddd;">Topographic Wetness Index</td>
+                            <td style="padding:10px; border:1px solid #ddd;">DEM</td>
+                            <td style="padding:10px; border:1px solid #ddd;">TWI grid</td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
 
+            <!-- LEARNING OUTCOMES -->
             <section id="outcomes" class="section">
                 <h2><i class="fas fa-flag-checkered icon"></i> Learning Outcomes</h2>
                 <p>After completing the course, participants will be able to:</p>
@@ -564,7 +1141,7 @@
 
         <footer>
             <p>Hydrological Terrain Analysis in SAGA GIS – Course Material</p>
-            <p>For educational use. | <a href="https://github.com/yourusername/your-repo" target="_blank">GitHub Repository</a></p>
+            <p>For educational use. | <a href="https://github.com/SaleksandraMSU/English_course" target="_blank">GitHub Repository</a></p>
             <p><i class="fas fa-code"></i> Built with HTML/CSS for GitHub Pages</p>
         </footer>
     </div>
